@@ -12,6 +12,21 @@ The immediate question we want to answer are:
 
 ## Prerequisites
 
+```
+# if on a unix machine run below
+# echo -e "AIRFLOW_UID=$(id -u)" > .env
+
+mkdir -p ./dags ./logs ./plugins
+docker-compose up airflow-init
+docker-compose up
+# docker exec <process id> airflow version 
+
+access airflow
+http://localhost:8080/
+
+connect to Postgres DW
+psql -h 127.0.0.1 -p 5431 -U postgres
+```
 
 ## How to Run?
 

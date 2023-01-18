@@ -72,6 +72,17 @@ x-airflow-common:
       condition: service_healthy
 
 services:
+  postgres-dw:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dw
+    volumes:
+      - postgres-dw-volume:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+
   postgres:
     image: postgres:13
     environment:
@@ -276,3 +287,4 @@ services:
 
 volumes:
   postgres-db-volume:
+  postgres-dw-volume:
