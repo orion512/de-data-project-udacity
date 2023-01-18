@@ -1,12 +1,17 @@
-# Data Pipelines with Airflow
+# Data Engineering Nanodegree Capstone Project
 
-This repository serves as a submission for Udacity data engineer nanodegree.
+This repository serves as a submission for Udacity's data engineer nanodegree.
 
 ## Project Introduction
-A music streaming company, Sparkify, has decided that it is time to introduce more automation and monitoring to their data warehouse ETL pipelines and come to the conclusion that the best tool to achieve this is Apache Airflow.
+In this project we are working with movie data from [IMDB](https://www.imdb.com/interfaces/).
+The goal is to build an ETL pipeline which creates a mini data warehouse that can be used for movie analytics.
+The immediate question we want to answer are:
+- Which actor/actress has the highest movie rating average?
+- which actor/actress has been in most high rated movies?
+- Average of actors/actresses in different types of media productions (movie, series, video game, etc.)
 
-This project reads data from an already existing S3 bucket and moves it into a Postgres (Redshift) database.
-After it performs further transformations on the Redshift DB itself.
+## Prerequisites
+
 
 ## How to Run?
 
