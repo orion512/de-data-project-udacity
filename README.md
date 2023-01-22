@@ -17,6 +17,7 @@ The immediate question we want to answer are:
 # echo -e "AIRFLOW_UID=$(id -u)" > .env
 
 mkdir -p ./dags ./logs ./plugins
+python scripts/get_data.py
 docker-compose up airflow-init
 docker-compose up
 # docker exec <process id> airflow version 
