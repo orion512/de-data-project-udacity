@@ -25,45 +25,45 @@ dag = DAG(
 
 start_operator = EmptyOperator(task_id='begin_execution',  dag=dag)
 
-stage_title_basics_to_postgres = EmptyOperator(task_id='aaa',  dag=dag)
-# stage_title_basics_to_postgres = StageToPostgresOperator(
-#     task_id='stage_title_basics',
-#     table_name="st_title_basics",
-#     file_path='/opt/datasets/title.basics.tsv',
-#     delimiter="E'\t'",
-#     pg_conn_id="postgresdw",
-#     dag=dag,
-# )
+# stage_title_basics_to_postgres = EmptyOperator(task_id='aaa',  dag=dag)
+stage_title_basics_to_postgres = StageToPostgresOperator(
+    task_id='stage_title_basics',
+    table_name="st_title_basics",
+    file_path='/opt/datasets/title.basics.tsv',
+    delimiter="E'\t'",
+    pg_conn_id="postgresdw",
+    dag=dag,
+)
 
-stage_title_ratings_to_postgres = EmptyOperator(task_id='bbb',  dag=dag)
-# stage_title_ratings_to_postgres = StageToPostgresOperator(
-#     task_id='stage_title_ratings',
-#     table_name="st_title_ratings",
-#     file_path='/opt/datasets/title.ratings.tsv',
-#     delimiter="E'\t'",
-#     pg_conn_id="postgresdw",
-#     dag=dag,
-# )
+# stage_title_ratings_to_postgres = EmptyOperator(task_id='bbb',  dag=dag)
+stage_title_ratings_to_postgres = StageToPostgresOperator(
+    task_id='stage_title_ratings',
+    table_name="st_title_ratings",
+    file_path='/opt/datasets/title.ratings.tsv',
+    delimiter="E'\t'",
+    pg_conn_id="postgresdw",
+    dag=dag,
+)
 
-stage_title_principals_to_postgres = EmptyOperator(task_id='ccc',  dag=dag)
-# stage_title_principals_to_postgres = StageToPostgresOperator(
-#     task_id='stage_title_principals',
-#     table_name="st_title_principals",
-#     file_path='/opt/datasets/title.principals.tsv',
-#     delimiter="E'\t'",
-#     pg_conn_id="postgresdw",
-#     dag=dag,
-# )
+# stage_title_principals_to_postgres = EmptyOperator(task_id='ccc',  dag=dag)
+stage_title_principals_to_postgres = StageToPostgresOperator(
+    task_id='stage_title_principals',
+    table_name="st_title_principals",
+    file_path='/opt/datasets/title.principals.tsv',
+    delimiter="E'\t'",
+    pg_conn_id="postgresdw",
+    dag=dag,
+)
 
-stage_name_basics_to_postgres = EmptyOperator(task_id='ddd',  dag=dag)
-# stage_name_basics_to_postgres = StageToPostgresOperator(
-#     task_id='stage_name_basics',
-#     table_name="st_name_basics",
-#     file_path='/opt/datasets/name.basics.tsv',
-#     delimiter="E'\t'",
-#     pg_conn_id="postgresdw",
-#     dag=dag,
-# )
+# stage_name_basics_to_postgres = EmptyOperator(task_id='ddd',  dag=dag)
+stage_name_basics_to_postgres = StageToPostgresOperator(
+    task_id='stage_name_basics',
+    table_name="st_name_basics",
+    file_path='/opt/datasets/name.basics.tsv',
+    delimiter="E'\t'",
+    pg_conn_id="postgresdw",
+    dag=dag,
+)
 
 start_load_operator = EmptyOperator(task_id='loading_begin',  dag=dag)
 

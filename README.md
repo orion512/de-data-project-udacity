@@ -10,6 +10,16 @@ The immediate question we want to answer are:
 - which actor/actress has been in most high rated movies?
 - Average of actors/actresses in different types of media productions (movie, series, video game, etc.)
 
+## Next steps (remove this section before submitting)
+- explore casting and person tables if all is fine
+- load title table
+- introduce quality
+- prepare analytical queries
+- prepare README
+
+- read udacity instructions again and patch up the project
+- submit first time by Friday 24.2.2023
+
 ## Prerequisites
 
 ```
@@ -34,9 +44,10 @@ psql -h 127.0.0.1 -p 5431 -U postgres
 This section describes how to get use this repositrory.
 
 **Create Airflow Connections**
-To run this project you will need two connections in airflow.
-- redshift database
-- Amazon Web Services
+To run this project you will need one connection in airflow.
+- postgres connection
+
+use postgres-dw as hostname if running thought the included docker-compose.yaml
 
 **Initialize the database**
 before starting you will also need to run the create_tables.sql on your

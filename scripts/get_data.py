@@ -23,6 +23,8 @@ IMDB_FILES = [
 if os.path.exists(os.path.join(PROJECT_PATH, OUTPUT)):
     shutil.rmtree(os.path.join(PROJECT_PATH, OUTPUT))
     os.mkdir(os.path.join(PROJECT_PATH, OUTPUT))
+else:
+    os.mkdir(os.path.join(PROJECT_PATH, OUTPUT))
 
 print("Starting to get the data")
 
