@@ -1,4 +1,4 @@
-class SqlQueries:
+class SqlQueriesLoad:
     casting_insert = ("""
         INSERT INTO casting (tconst, ordering, nconst, category, job, characters)
         SELECT
@@ -9,7 +9,11 @@ class SqlQueries:
             NULLIF(job,'\\N') AS job, 
             REPLACE(REPLACE(NULLIF(characters,'\\N'), '[', '{'), ']', '}')::TEXT[] AS characters
         FROM st_title_principals
-        LIMIT 1000;
+        LIMIT 1000
+        ON CONFLICT (tconst, ordering) DO update set
+            category = EXCLUDED.category,
+            job = EXCLUDED.job,
+            characters = EXCLUDED.characters
     """)
 
     person_insert = ("""
@@ -20,12 +24,18 @@ class SqlQueries:
             NULLIF(birthYear, '\\N')::INT,
             NULLIF(deathYear, '\\N')::INT,
             ('{' || primaryProfession || '}')::TEXT[] AS primaryProfession,
-            ('{' || knownForTitles || '}')::TEXT[] AS knownForTitles
+            ('{' || NULLIF(knownForTitles, '\\N') || '}')::TEXT[] AS knownForTitles
         FROM st_name_basics
         LIMIT 1000
+        ON CONFLICT (nconst) DO update set
+            primaryName = EXCLUDED.primaryName,
+            deathyear = EXCLUDED.deathYear,
+            knownForTitles = EXCLUDED.knownForTitles,
+            primaryProfession = EXCLUDED.primaryProfession
     """)
 
     title_insert = ("""
+        INSERT INTO title
         select
             stb.tconst,
             stb.titleType,

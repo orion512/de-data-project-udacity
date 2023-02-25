@@ -59,7 +59,8 @@ CREATE TABLE casting (
 	nconst TEXT NOT NULL,
 	category TEXT NOT NULL,
 	job TEXT,
-	characters TEXT[]
+	characters TEXT[],
+	UNIQUE (tconst, ordering)
 );
 
 CREATE TABLE person (
