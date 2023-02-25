@@ -81,6 +81,13 @@ load_person_table = PostgresOperator(
     dag=dag
 )
 
+load_title_table = PostgresOperator(
+    task_id='load_title_dim_table',
+    postgres_conn_id="postgresdw",
+    sql=SqlQueries.title_insert,
+    dag=dag
+)
+
 # load_user_dimension_table = LoadDimensionOperator(
 #     task_id='Load_user_dim_table',
 #     redshift_conn_id="redshift",
@@ -126,18 +133,32 @@ load_person_table = PostgresOperator(
 
 end_operator = EmptyOperator(task_id='end_execution',  dag=dag)
 
-start_operator >> stage_title_basics_to_postgres
-start_operator >> stage_title_ratings_to_postgres
-start_operator >> stage_title_principals_to_postgres
-start_operator >> stage_name_basics_to_postgres
+start_operator >> [
+    stage_title_basics_to_postgres,
+    stage_title_ratings_to_postgres,
+    stage_title_principals_to_postgres,
+    stage_name_basics_to_postgres,
+] >> start_load_operator
 
-stage_title_basics_to_postgres >> start_load_operator
-stage_title_ratings_to_postgres >> start_load_operator
-stage_title_principals_to_postgres >> start_load_operator
-stage_name_basics_to_postgres >> start_load_operator
+# start_operator >> stage_title_basics_to_postgres
+# start_operator >> stage_title_ratings_to_postgres
+# start_operator >> stage_title_principals_to_postgres
+# start_operator >> stage_name_basics_to_postgres
 
-start_load_operator >> load_casting_table
-start_load_operator >> load_person_table
+# stage_title_basics_to_postgres >> start_load_operator
+# stage_title_ratings_to_postgres >> start_load_operator
+# stage_title_principals_to_postgres >> start_load_operator
+# stage_name_basics_to_postgres >> start_load_operator
 
-load_casting_table >> end_operator
-load_person_table >> end_operator
+start_load_operator >> [
+    load_casting_table,
+    load_person_table,
+    load_title_table,
+] >> end_operator
+# start_load_operator >> load_casting_table
+# start_load_operator >> load_person_table
+# start_load_operator >> load_title_table
+
+
+# load_casting_table >> end_operator
+# load_person_table >> end_operator

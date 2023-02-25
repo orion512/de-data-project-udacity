@@ -18,7 +18,10 @@ The immediate question we want to answer are:
 - prepare README
 
 - read udacity instructions again and patch up the project
-- submit first time by Friday 24.2.2023
+
+- submit first time by Saturday 25.2.2023
+- finalise Sunday 26.2.2023
+- buffer dat Monday 27.2.2023
 
 ## Prerequisites
 
@@ -26,7 +29,7 @@ The immediate question we want to answer are:
 # if on a unix machine run below
 # echo -e "AIRFLOW_UID=$(id -u)" > .env
 
-mkdir -p ./dags ./logs ./plugins
+mkdir -p ./dags ./logs ./plugins 
 python scripts/get_data.py
 docker-compose up airflow-init
 docker-compose up

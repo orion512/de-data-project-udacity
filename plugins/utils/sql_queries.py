@@ -32,10 +32,10 @@ class SqlQueries:
             stb.primaryTitle,
             stb.originalTitle,
             stb.isAdult::INT,
-            NULLIF(stb.startYear, '\N')::INT as startYear,
-            NULLIF(stb.endYear, '\N')::INT as endYear,
-            NULLIF(stb.runtimeMinutes, '\N')::INT as runtimeMinutes,
-            ('{' || NULLIF(stb.genres, '\N') || '}')::TEXT[] AS genres,
+            NULLIF(stb.startYear, '\\N')::INT as startYear,
+            NULLIF(stb.endYear, '\\N')::INT as endYear,
+            NULLIF(stb.runtimeMinutes, '\\N')::INT as runtimeMinutes,
+            ('{' || NULLIF(stb.genres, '\\N') || '}')::TEXT[] AS genres,
             str.averageRating::FLOAT,
             str.numVotes::INT
         from st_title_basics stb 
