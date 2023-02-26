@@ -9,7 +9,6 @@ class SqlQueriesLoad:
             NULLIF(job,'\\N') AS job, 
             REPLACE(REPLACE(NULLIF(characters,'\\N'), '[', '{'), ']', '}')::TEXT[] AS characters
         FROM st_title_principals
-        LIMIT 1000
         ON CONFLICT (tconst, ordering) DO update set
             category = EXCLUDED.category,
             job = EXCLUDED.job,
@@ -26,7 +25,6 @@ class SqlQueriesLoad:
             ('{' || primaryProfession || '}')::TEXT[] AS primaryProfession,
             ('{' || NULLIF(knownForTitles, '\\N') || '}')::TEXT[] AS knownForTitles
         FROM st_name_basics
-        LIMIT 1000
         ON CONFLICT (nconst) DO update set
             primaryName = EXCLUDED.primaryName,
             deathyear = EXCLUDED.deathYear,
@@ -50,5 +48,8 @@ class SqlQueriesLoad:
             str.numVotes::INT
         from st_title_basics stb 
         left join st_title_ratings str on stb.tconst = str.tconst
-        limit 1000
+        ON CONFLICT (tconst) DO update set
+            endYear = EXCLUDED.endYear,
+            averageRating = EXCLUDED.averageRating,
+            numVotes = EXCLUDED.numVotes
     """)

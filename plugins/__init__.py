@@ -10,6 +10,7 @@ class CustomPlugin(AirflowPlugin):
     name = "custom_plugin"
     operators = [
         operators.StageToPostgresOperator,
+        operators.DataQualityOperator,
     ]
     helpers = [
         utils.SqlQueriesInit,
