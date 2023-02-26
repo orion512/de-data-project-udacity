@@ -11,8 +11,10 @@ class CustomPlugin(AirflowPlugin):
     operators = [
         operators.StageToPostgresOperator,
         operators.DataQualityOperator,
+        operators.CreateViewOperator,
     ]
     helpers = [
         utils.SqlQueriesInit,
         utils.SqlQueriesLoad,
+        utils.SqlQueriesAnalytics,
     ]

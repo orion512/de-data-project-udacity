@@ -38,7 +38,6 @@ join cte_high_movies t on c.tconst = t.tconst
 where category in ('actress', 'actor')
 group by p.nconst, p.primaryname
 order by count(*) desc
-limit 20
 
 --------------------------
 -- Actors vs Acctresses --

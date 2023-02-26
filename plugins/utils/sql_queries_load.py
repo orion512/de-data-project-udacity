@@ -1,4 +1,6 @@
 class SqlQueriesLoad:
+    """ Class for SQL queries to load data from staging """
+
     casting_insert = ("""
         INSERT INTO casting (tconst, ordering, nconst, category, job, characters)
         SELECT

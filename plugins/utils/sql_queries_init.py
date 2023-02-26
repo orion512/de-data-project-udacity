@@ -1,4 +1,5 @@
 class SqlQueriesInit:
+    """ Class for SQL queries to create all the tables """
 
     st_title_basics_create = ("""
         CREATE TABLE st_title_basics (
